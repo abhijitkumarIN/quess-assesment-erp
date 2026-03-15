@@ -1,6 +1,8 @@
 # Project Setup Guide
 
 ## Deployment [https://quess-assesment-erp.vercel.app/]
+## Backend swagger docs [http://quess.newsarmour.com/docs]
+
 
 The application has been deployed.
 
