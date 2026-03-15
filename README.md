@@ -13,8 +13,8 @@ Follow the steps below to run the project locally.
 ### 1. Clone the Repository
 
 ```bash
-git clone <repository-url>
-cd <project-folder>
+git clonehttps://github.com/abhijitkumarIN/quess-assesment-erp
+cd quess-assesment-erp
 ```
 
 ### 2. Install Dependencies
