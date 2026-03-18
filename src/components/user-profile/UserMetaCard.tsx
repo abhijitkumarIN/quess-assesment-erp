@@ -57,7 +57,9 @@ export default function UserMetaCard({employees}:{employees:any}) {
       setValue("email", employees.email || "");
       setValue("phone", employees.contact_number || "");
       setValue("bio", employees.bio || "");
-      setValue("status", employees.today_attendance_status || "present");
+      // Ensure status is properly set with correct capitalization
+      const currentStatus = employees.today_attendance_status || "Present";
+      setValue("status", currentStatus.charAt(0).toUpperCase() + currentStatus.slice(1).toLowerCase());
       setValue("facebook", employees.facebook || "");
       setValue("xhandler", employees.xhandler || "");
       setValue("linkedin", employees.linkedin || "");
@@ -76,8 +78,25 @@ export default function UserMetaCard({employees}:{employees:any}) {
     try {
       const fullName = `${data.firstName} ${data.lastName}`.trim();
       
+      // Debug: Log the data being sent
+      console.log("Submitting data:", {
+        name: fullName,
+        email: data.email,
+        contact_number: data.phone,
+        bio: data.bio,
+        today_attendance_status: data.status,
+        status: data.status,
+        facebook: data.facebook || undefined,
+        xhandler: data.xhandler || undefined,
+        linkedin: data.linkedin || undefined,
+        instagram: data.instagram || undefined,
+      });
+
+      // Use NEXT_PUBLIC_API_URL for client-side access
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || '/api';
+      
       const response = await fetch(
-        `${process.env.API_URL}/employees/${employees.id}`,
+        `${apiUrl}/employees/${employees.id}`,
         {
           method: "PUT",
           headers: {
@@ -89,6 +108,7 @@ export default function UserMetaCard({employees}:{employees:any}) {
             contact_number: data.phone,
             bio: data.bio,
             today_attendance_status: data.status,
+            status: data.status, // Also send as 'status' in case API expects this field
             facebook: data.facebook || undefined,
             xhandler: data.xhandler || undefined,
             linkedin: data.linkedin || undefined,
@@ -97,17 +117,23 @@ export default function UserMetaCard({employees}:{employees:any}) {
         }
       );
 
+      console.log("Response status:", response.status);
+
       if (!response.ok) {
-        throw new Error("Failed to update employee");
+        const errorText = await response.text();
+        console.error("API Error:", errorText);
+        throw new Error(`Failed to update employee: ${response.status} ${errorText}`);
       }
 
       const updatedEmployee = await response.json();
+      console.log("Updated employee:", updatedEmployee);
       alert("Employee updated successfully!");
       closeModal();
       
       // Optionally refresh the data here
       window.location.reload();
     } catch (err) {
+      console.error("Update error:", err);
       alert(err instanceof Error ? err.message : "Failed to update employee");
     } finally {
       setSubmitting(false);

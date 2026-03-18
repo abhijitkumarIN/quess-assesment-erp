@@ -40,7 +40,7 @@ export default function AdminLayout({
         {/* Header */}
         <AppHeader />
         {/* Page Content */}
-        <div className="p-4 mx-auto max-w-(--breakpoint-2xl) md:p-6">{children}</div>
+        <div className=" px-3 my-2 mx-auto max-w-(--breakpoint-2xl) ">{children}</div>
       </div>
     </div>
   );

@@ -56,25 +56,28 @@ export const EcommerceMetrics = () => {
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-6">
       {/* <!-- Metric Item Start --> */}
       <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] md:p-6">
-        <div className="flex items-center justify-center w-12 h-12 bg-gray-100 rounded-xl dark:bg-gray-800">
-          <GroupIcon className="text-gray-800 size-6 dark:text-white/90" />
+        <div className="flex items-center justify-center w-12 h-12 bg-gray-100 rounded-xl dark:bg-gray-800 bg-gradient-to-r from-emerald-500 to-teal-500 ">
+          <GroupIcon className="text-white size-6 dark:text-white/90" />
         </div>
 
         <div className="flex items-end justify-between mt-5">
           <div>
-            <span className="text-sm text-gray-500 dark:text-gray-400">
-              Total Employee 
-            </span>
-            <h4 className="mt-2 font-bold text-gray-800 text-title-sm dark:text-white/90">
+         <div className="flex items-center space-x-2">
+                <div className="w-3 h-3 bg-blue-400 rounded-full animate-pulse"></div>
+                <span className="text-sm text-blue-600 dark:text-blue-400 font-medium"> Total Employee</span>
+              </div>
+            <h4 className="mt-2 font-bold text-gray-800 text-title-sm dark:text-white/90 !text-blue-400 ">
               {data?.total_employees ?? 0}
             </h4>
           </div>
 
             <div>
-            <span className="text-sm text-gray-500 dark:text-gray-400">
-              Present Employee
-            </span>
-            <h4 className="mt-2 font-bold text-gray-800 text-title-sm dark:text-white/90">
+                <div className="flex items-center space-x-2">
+                <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+                <span className="text-sm text-green-600 dark:text-green-400 font-medium">Present Employee
+                </span>
+              </div>
+            <h4 className="mt-2 font-bold text-gray-800 text-title-sm dark:text-white/90 text-green-400">
               {data?.present_employees ?? 0}
             </h4>
           </div>
@@ -85,15 +88,16 @@ export const EcommerceMetrics = () => {
 
       {/* <!-- Metric Item Start --> */}
       <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] md:p-6">
-        <div className="flex items-center justify-center w-12 h-12 bg-gray-100 rounded-xl dark:bg-gray-800">
-                   <GroupIcon className="text-gray-800 size-6 dark:text-white/90" />
+         <div className="flex items-center justify-center w-12 h-12 bg-gray-100 rounded-xl dark:bg-gray-800 bg-gradient-to-r from-emerald-500 to-teal-500 ">
+          <GroupIcon className="text-white size-6 dark:text-white/90" />
         </div>
         <div className="flex items-end justify-between mt-5">
           <div>
-            <span className="text-sm text-gray-500 dark:text-gray-400">
-              Absent Employee
-            </span>
-            <h4 className="mt-2 font-bold text-gray-800 text-title-sm dark:text-white/90">
+                      <div className="flex items-center space-x-2">
+                <div className="w-3 h-3 bg-purple-400 rounded-full animate-pulse"></div>
+                <span className="text-sm text-purple-600 dark:text-purple-400 font-medium">Absent Employee</span>
+              </div>
+            <h4 className="mt-2 font-bold text-gray-800 text-title-sm dark:text-white/90 text-purple-400">
               {data?.absent_employees ?? 0}
             </h4>
           </div>
